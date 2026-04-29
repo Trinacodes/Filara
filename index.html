@@ -63,21 +63,32 @@ body {
             z-index: 100;
         }
 
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-    text-decoration: none;
+       .navbar .container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 2rem;
+}
+
+    .logo-wrapper {
+    text-align: center;
+    line-height: 1.2;
 }
 
 .logo-image {
-    height: 60px;
+    height: 40px;
     width: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.logo {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--deep-plum);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 2px;
     display: block;
 }
         .nav-links {
@@ -353,7 +364,10 @@ body {
 
 <nav class="navbar">
     <div class="container">
-        <a href="index.html" class="logo">FILARA</a>
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="FILARA Logo" class="logo-image">
+            <a href="index.html" class="logo">FILARA</a>
+        </div>
         <ul class="nav-links">
             <li><a href="#">SHOP</a></li>
             <li><a href="#">PATTERNS</a></li>
