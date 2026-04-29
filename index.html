@@ -64,12 +64,16 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            text-decoration: none;
-            color: var(--deep-plum);
-            font-weight: bold;
-        }
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
 
+.logo-image {
+    height: 60px;
+    width: auto;
+    display: block;
+}
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -322,6 +326,9 @@
             .product-grid {
                 grid-template-columns: 1fr;
             }
+            .logo-image {
+    height: 45px;
+}
         }
     </style>
 </head>
@@ -329,7 +336,9 @@
 
 <nav class="navbar">
     <div class="container">
-        <a href="index.html" class="logo">Filara</a>
+      <a href="index.html" class="logo">
+    <img src="logo.png" alt="FILARA" class="logo-image">
+</a>
         <ul class="nav-links">
             <li><a href="#">Shop</a></li>
             <li><a href="#">Patterns</a></li>
