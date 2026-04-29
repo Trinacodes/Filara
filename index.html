@@ -5,46 +5,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filara | Handcrafted Crochet</title>
     <style>
-        body {
-            font-family: 'Georgia', serif;
+        :root {
+            --champagne: #F5E6C8;
+            --deep-plum: #3D1F3F;
+            --soft-ivory: #FAF6EF;
+            --warm-gold: #C9A84C;
+            --slate-grey: #4A4550;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background: #FAF6EF;
-            color: #4A4550;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--slate-grey);
+            background: var(--soft-ivory);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--champagne);
+            position: sticky;
+            top: 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--deep-plum);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-grey);
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-gold);
+        }
+
+        /* Hero Section */
         .hero {
-            background: #F5E6C8;
+            background: var(--champagne);
             padding: 100px 20px;
+            text-align: center;
         }
-        h1 {
+
+        .hero h1 {
             font-size: 3rem;
-            color: #3D1F3F;
-            margin-bottom: 10px;
+            color: var(--deep-plum);
+            margin-bottom: 15px;
         }
-        p {
+
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        button {
-            background: #3D1F3F;
+
+        .btn-primary {
+            background: var(--deep-plum);
             color: white;
             border: none;
             padding: 12px 30px;
             border-radius: 30px;
             font-size: 1rem;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
-        button:hover {
-            background: #C9A84C;
+
+        .btn-primary:hover {
+            background: var(--warm-gold);
+            color: var(--deep-plum);
+        }
+
+        /* Story Section */
+        .story {
+            padding: 60px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .story h2 {
+            font-size: 2rem;
+            color: var(--deep-plum);
+            margin-bottom: 20px;
+        }
+
+        .story p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Featured Products */
+        .featured {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .featured h2 {
+            font-size: 2rem;
+            color: var(--deep-plum);
+            margin-bottom: 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background: var(--champagne);
+        }
+
+        .product-card h3 {
+            color: var(--deep-plum);
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: var(--warm-gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid var(--champagne);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: var(--deep-plum);
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep-plum);
+            color: white;
+            border-color: var(--deep-plum);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-plum);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo">Filara</a>
+        <ul class="nav-links">
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Patterns</a></li>
+            <li><a href="#">Commissions</a></li>
+            <li><a href="#">Story</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
         <h1>Made Slowly.<br>Worn Forever.</h1>
         <p>Handcrafted crochet with quiet intention.</p>
-        <button onclick="alert('Welcome to Filara!')">Discover Filara</button>
+        <button class="btn-primary" onclick="alert('Welcome to Filara! Shop coming soon.')">Discover Filara</button>
     </div>
+</section>
+
+<section class="story">
+    <div class="container">
+        <h2>Some things begin quietly.</h2>
+        <p>Filara was not born in a design studio or a fashion school. It was born in a moment of stillness — a young woman, a hook, and a thread, teaching herself something beautiful from scratch.</p>
+        <p style="margin-top: 20px;">What started as a hobby became a language. Every stitch a word. Every piece a sentence.</p>
+    </div>
+</section>
+
+<section class="featured">
+    <div class="container">
+        <h2>Featured Pieces</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://placehold.co/400x500/F5E6C8/3D1F3F?text=Cloud+Blanket" alt="Cloud Blanket">
+                <h3>Cloud Blanket</h3>
+                <div class="price">$120</div>
+                <button class="btn-secondary" onclick="alert('Please email hello@filara.com to purchase')">Inquire</button>
+            </div>
+            <div class="product-card">
+                <img src="https://placehold.co/400x500/F5E6C8/3D1F3F?text=Wool+Sweater" alt="Wool Sweater">
+                <h3>Wool Sweater</h3>
+                <div class="price">$85</div>
+                <button class="btn-secondary" onclick="alert('Please email hello@filara.com to purchase')">Inquire</button>
+            </div>
+            <div class="product-card">
+                <img src="https://placehold.co/400x500/F5E6C8/3D1F3F?text=Heritage+Shawl" alt="Heritage Shawl">
+                <h3>Heritage Shawl</h3>
+                <div class="price">$110</div>
+                <button class="btn-secondary" onclick="alert('Please email hello@filara.com to purchase')">Inquire</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Filara. Made slowly. Worn forever.</p>
+    </div>
+</footer>
+
 </body>
 </html>
