@@ -6,12 +6,19 @@
     <title>Filara | Handcrafted Crochet, Made Slowly</title>
     <meta name="description" content="Filara creates handcrafted crochet pieces with intention. Luxury redefined — not by price, but by the hands behind every stitch.">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&family=Italiana&display=swap');
         :root {
             --champagne: #F5E6C8;
             --deep-plum: #3D1F3F;
             --soft-ivory: #FAF6EF;
             --warm-gold: #C9A84C;
             --slate-grey: #4A4550;
+
+            /* Fonts */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+    --font-accent: 'Italiana', sans-serif;
+}
         }
 
         * {
@@ -19,20 +26,19 @@
             padding: 0;
             box-sizing: border-box;
         }
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--slate-grey);
+    background-color: var(--soft-ivory);
+    line-height: 1.6;
+}
 
-        body {
-            font-family: 'Georgia', serif;
-            font-weight: normal;
-            color: var(--slate-grey);
-            background-color: var(--soft-ivory);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, .logo {
-            font-family: 'Georgia', serif;
-            font-weight: normal;
-            color: var(--deep-plum);
-        }
+       h1, h2, h3, .logo {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--deep-plum);
+}
 
         h2 {
             font-size: 2rem;
@@ -79,13 +85,14 @@
             gap: 2rem;
             list-style: none;
         }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--slate-grey);
-            font-weight: normal;
-            transition: color 0.2s;
-        }
+.nav-links a {
+    text-decoration: none;
+    color: var(--slate-grey);
+    font-family: var(--font-accent);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
 
         .nav-links a:hover {
             color: var(--warm-gold);
@@ -174,6 +181,15 @@
             padding: 5rem 0;
             text-align: center;
         }
+        .announcement-bar {
+    background: var(--deep-plum);
+    color: var(--champagne);
+    text-align: center;
+    padding: 10px;
+    font-family: var(--font-accent);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
 
         .product-grid {
             display: grid;
@@ -330,26 +346,28 @@
     height: 45px;
 }
         }
+        
     </style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="logo">
-    <img src="logo.png" alt="FILARA" class="logo-image">
-</a>
+        <a href="index.html" class="logo">FILARA</a>
         <ul class="nav-links">
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Patterns</a></li>
-            <li><a href="#">Commissions</a></li>
-            <li><a href="#">Story</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">SHOP</a></li>
+            <li><a href="#">PATTERNS</a></li>
+            <li><a href="#">COMMISSIONS</a></li>
+            <li><a href="#">STORY</a></li>
+            <li><a href="#">BLOG</a></li>
+            <li><a href="#">CONTACT</a></li>
         </ul>
         <div class="cart-icon">👜</div>
     </div>
 </nav>
+    <div class="announcement-bar">
+    FREE SHIPPING ON ALL ORDERS OVER $100
+</div>
 
 <header class="hero">
     <div class="hero-content">
