@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crochella · Handcrafted Crochet</title>
-  <meta name="description" content="Crochella – handcrafted crochet pieces, made slowly with intention. Custom orders, floral collections, and timeless style." />
+  <title>Filara · Handcrafted Crochet</title>
+  <meta name="description" content="Filara – handcrafted crochet pieces, made slowly with intention. Custom orders, floral collections, and timeless style." />
   <style>
     /* ----- RESET & VARIABLES ----- */
     * {
@@ -129,6 +129,9 @@
       width: auto;
       display: block;
       margin-bottom: 4px;
+      background: var(--champagne);
+      border-radius: 4px;
+      padding: 4px;
     }
     .logo {
       font-size: 1.2rem;
@@ -152,9 +155,17 @@
       font-size: 0.9rem;
       letter-spacing: 1px;
       transition: color 0.2s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
     }
     .nav-links a:hover {
       color: var(--warm-gold);
+    }
+    .nav-links a.active {
+      color: var(--deep-plum);
+      border-bottom: 2px solid var(--warm-gold);
     }
     .cart-icon {
       font-size: 1.3rem;
@@ -170,6 +181,20 @@
       font-family: var(--font-accent);
       font-size: 0.8rem;
       letter-spacing: 2px;
+    }
+
+    /* ----- PAGES (shown/hidden via JS) ----- */
+    .page {
+      display: none;
+      animation: fade 0.3s ease;
+    }
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
     }
 
     /* ----- HERO (from NEWCOLLECTIONS) ----- */
@@ -427,6 +452,21 @@
       border: 1px solid #ccc;
     }
 
+    /* ----- ABOUT PAGE ----- */
+    .about-page {
+      padding: 4rem 0;
+      background: white;
+    }
+    .about-page .story-text {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-page .story-text p {
+      font-size: 1.1rem;
+      margin: 1.5rem 0;
+    }
+
     /* ----- FOOTER ----- */
     footer {
       background: var(--deep-plum);
@@ -452,6 +492,10 @@
       opacity: 0.8;
       transition: opacity 0.2s;
       font-family: var(--font-accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
     }
     .footer-links a:hover, .footer-social a:hover {
       opacity: 1;
@@ -467,7 +511,7 @@
     /* ----- RESPONSIVE ----- */
     @media (max-width: 768px) {
       .nav-links {
-        display: none;
+        gap: 1rem;
       }
       .hero h1 {
         font-size: 2.2rem;
@@ -489,6 +533,12 @@
       .container {
         padding: 0 1rem;
       }
+      .nav-links {
+        gap: 0.6rem;
+      }
+      .nav-links a {
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -501,187 +551,263 @@
 <nav class="navbar">
   <div class="container">
     <div class="logo-wrapper">
-      <!-- replace src with your logo image -->
-      <img src="logo-placeholder.png" alt="Crochella Logo" class="logo-image" style="background:#ddd; border-radius:4px; width:40px; height:40px; object-fit:cover;" />
-      <a href="index.html" class="logo">CROCHELLA</a>
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23F5E6C8'/%3E%3Ctext x='8' y='26' font-family='serif' font-size='20' fill='%233D1F3F'%3EF%3C/text%3E%3C/svg%3E" alt="Filara Logo" class="logo-image" />
+      <a href="#" class="logo" onclick="showPage('home')">FILARA</a>
     </div>
     <ul class="nav-links">
-      <li><a href="#shop">SHOP</a></li>
-      <li><a href="#custom">CUSTOM</a></li>
-      <li><a href="#sizeguide">SIZE GUIDE</a></li>
-      <li><a href="#newcollection">NEW</a></li>
-      <li><a href="#contact">CONTACT</a></li>
+      <li><a class="active" data-page="home" onclick="showPage('home')">HOME</a></li>
+      <li><a data-page="shop" onclick="showPage('shop')">SHOP</a></li>
+      <li><a data-page="custom" onclick="showPage('custom')">CUSTOM</a></li>
+      <li><a data-page="sizeguide" onclick="showPage('sizeguide')">SIZE GUIDE</a></li>
+      <li><a data-page="about" onclick="showPage('about')">ABOUT</a></li>
     </ul>
     <div class="cart-icon">👜</div>
   </div>
 </nav>
 
-<!-- HERO / NEW COLLECTIONS (from photo 1) -->
-<section class="hero" id="newcollection">
-  <div class="container">
-    <span class="collection-tag">✦ NEW COLLECTION</span>
-    <h1>FLORALIA 26</h1>
-    <p class="sub">A collection made for every kind of summer outing,<br>it's a reminder to embrace color, bloom with confidence, and find beauty in your own.</p>
-    <a href="#shop" class="btn-primary">EXPLORE THE COLLECTION</a>
-  </div>
-</section>
+<!-- ==================== PAGES ==================== -->
 
-<!-- HANDMADE CROCHET COLLECTION (product grid from photo 1) -->
-<section class="container section-title" id="shop">
-  <h2>HANDMADE CROCHET COLLECTION</h2>
-</section>
-<section class="container" style="padding-bottom: 1rem;">
-  <div class="product-grid">
-    <!-- product 1 -->
-    <div class="product-card">
-      <div class="img-placeholder"></div>
-      <h3>Tropical Midi Skirt</h3>
-      <p class="price">$130.00</p>
-      <a href="#product-detail" class="btn-outline">View</a>
+<!-- PAGE: HOME -->
+<div id="page-home" class="page active">
+  <!-- HERO / NEW COLLECTIONS -->
+  <section class="hero">
+    <div class="container">
+      <span class="collection-tag">✦ NEW COLLECTION</span>
+      <h1>FLORALIA 26</h1>
+      <p class="sub">A collection made for every kind of summer outing,<br>it's a reminder to embrace color, bloom with confidence, and find beauty in your own.</p>
+      <a href="#" class="btn-primary" onclick="showPage('shop')">EXPLORE THE COLLECTION</a>
     </div>
-    <!-- product 2 -->
-    <div class="product-card">
-      <div class="img-placeholder"></div>
-      <h3>Sequin Coord</h3>
-      <p class="price">$160.00</p>
-      <a href="#product-detail" class="btn-outline">View</a>
-    </div>
-    <!-- product 3 -->
-    <div class="product-card">
-      <div class="img-placeholder"></div>
-      <h3>Crochet Asymmetrical Skirt</h3>
-      <p class="price">$100.00</p>
-      <a href="#product-detail" class="btn-outline">View</a>
-    </div>
-    <!-- product 4 -->
-    <div class="product-card">
-      <div class="img-placeholder"></div>
-      <h3>Ombre Cowl Neck Coord</h3>
-      <p class="price">$160.00</p>
-      <a href="#product-detail" class="btn-outline">View</a>
-    </div>
-  </div>
-  <div style="text-align:center; margin: 1rem 0 2rem;">
-    <a href="#" class="btn-secondary">VIEW ALL →</a>
-  </div>
-</section>
+  </section>
 
-<!-- CUSTOM ORDER (from photo 2) -->
-<section class="custom-section" id="custom">
-  <div class="container highlight">
-    <h2>CROCHELLA CUSTOMS</h2>
-    <p>Each piece is lovingly handcrafted to your unique vision. Work with our artisan crocheters to create one-of-a-kind garments tailored to your measurements, color preferences, and style. From weddings to special celebrations, we bring your dream crochet look to life, stitch by stitch.</p>
-    <a href="#" class="btn-primary">START YOUR CUSTOM ORDER</a>
-  </div>
-</section>
-
-<!-- SIZE GUIDE (from photo 3) -->
-<section class="size-guide" id="sizeguide">
-  <div class="container">
-    <h2 style="text-align:center;">SIZE GUIDE</h2>
-    <p style="text-align:center; margin-bottom:1rem;">Find your perfect fit</p>
-
-    <table>
-      <thead><tr><th>Size</th><th>Bust (in)</th><th>Waist (in)</th><th>Hip (in)</th></tr></thead>
-      <tbody>
-        <tr><td>XXS</td><td>29.9-31.1</td><td>22.0-24.0</td><td>31.9-33.9</td></tr>
-        <tr><td>XS</td><td>31.9-33.1</td><td>24.0-26.0</td><td>33.9-35.8</td></tr>
-        <tr><td>S</td><td>33.9-35.0</td><td>26.0-28.0</td><td>35.8-38.2</td></tr>
-        <tr><td>M</td><td>35.8-37.0</td><td>28.0-29.9</td><td>38.2-40.2</td></tr>
-        <tr><td>L</td><td>38.2-39.0</td><td>29.9-31.9</td><td>40.2-42.1</td></tr>
-        <tr><td>XL</td><td>40.2-40.9</td><td>31.9-33.9</td><td>42.1-44.1</td></tr>
-        <tr><td>XXL</td><td>42.1-42.9</td><td>33.9-35.8</td><td>44.1-46.1</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size:0.9rem; text-align:center; margin-top: -0.5rem;">These are recommended body measurements. For a relaxed fit, size up.</p>
-
-    <div class="fit-info">
-      <span>FIT TYPE: Skinny ——— Oversized</span>
-      <span>STRETCH: None ——— High (Slight Stretch)</span>
-    </div>
-
-    <div class="measure-tips">
-      <h4 style="font-family:var(--font-heading); margin-bottom:0.5rem;">HOW TO MEASURE</h4>
-      <ul>
-        <li>Measure around fullest part of bust, tape parallel to floor.</li>
-        <li>Measure waist at thinnest place.</li>
-        <li>Measure fullest part of hips.</li>
-        <li>For tops: measure from highest point of shoulder to desired length.</li>
-        <li>Measure from shoulder seam to wrist bone with arm slightly bent.</li>
-      </ul>
-      <h4 style="font-family:var(--font-heading); margin: 0.8rem 0 0.3rem;">SIZE TIPS</h4>
-      <ul>
-        <li>If between sizes, size up for comfort.</li>
-        <li>Crochet has slight natural stretch, molds to body.</li>
-        <li>Handmade items may vary 1–2 cm from listed measurements.</li>
-        <li>For questions, contact us before ordering.</li>
-        <li>If you have a bigger/smaller bust or hips, add in order note (e.g. size S bust, M hips).</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCT DETAIL: TROPICAL MIDI SKIRT (from photo 4) -->
-<section class="product-detail" id="product-detail">
-  <div class="container">
-    <div class="detail-grid">
-      <div class="detail-image">
-        <!-- replace with actual product image -->
-        <span style="background:rgba(255,255,255,0.5); padding:0.5rem 1rem; border-radius:40px;">Tropical Midi Skirt</span>
+  <!-- HANDMADE CROCHET COLLECTION (product grid) -->
+  <section class="container section-title" id="shop-grid">
+    <h2>HANDMADE CROCHET COLLECTION</h2>
+  </section>
+  <section class="container" style="padding-bottom: 1rem;">
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Tropical Midi Skirt</h3>
+        <p class="price">$130.00</p>
+        <a href="#" class="btn-outline" onclick="showPage('shop')">View</a>
       </div>
-      <div class="detail-meta">
-        <h2>TROPICAL MIDI SKIRT</h2>
-        <div class="price-lg">$130.00</div>
-        <p style="font-family:var(--font-accent); letter-spacing:1px;">TAX INCLUDED</p>
-        <div style="margin:0.8rem 0;">
-          <span style="font-weight:500;">SIZE</span> 
-          <a href="#sizeguide" style="margin-left:1rem; font-size:0.9rem; color:var(--warm-gold);">SIZE GUIDE</a>
-        </div>
-        <div class="size-selector">
-          <button class="active">XS</button>
-          <button>S</button>
-          <button>M</button>
-          <button>L</button>
-          <button>XL</button>
-        </div>
-        <div style="margin:0.8rem 0;">
-          <span class="color-indicator"></span> COLOR — MULTICOLOR
-        </div>
-        <div class="qty-row">
-          <label>QUANTITY</label>
-          <input type="number" value="1" min="1" />
-        </div>
-        <button class="btn-primary" style="margin-top:0.2rem;">ADD TO CART</button>
-        <p style="font-size:0.8rem; margin-top:0.8rem; opacity:0.7;">Shipping is calculated from your delivery country at checkout.</p>
-        <a href="#" style="display:inline-block; margin-top:0.5rem; font-family:var(--font-accent); color:var(--deep-plum);">MESSAGE US</a>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Sequin Coord</h3>
+        <p class="price">$160.00</p>
+        <a href="#" class="btn-outline" onclick="showPage('shop')">View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Crochet Asymmetrical Skirt</h3>
+        <p class="price">$100.00</p>
+        <a href="#" class="btn-outline" onclick="showPage('shop')">View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Ombre Cowl Neck Coord</h3>
+        <p class="price">$160.00</p>
+        <a href="#" class="btn-outline" onclick="showPage('shop')">View</a>
       </div>
     </div>
-  </div>
-</section>
+    <div style="text-align:center; margin: 1rem 0 2rem;">
+      <a href="#" class="btn-secondary" onclick="showPage('shop')">VIEW ALL →</a>
+    </div>
+  </section>
 
-<!-- MESSAGE US / CONTACT (from photo 1) -->
-<section style="padding: 2rem 0; text-align:center; background:var(--cream);" id="contact">
-  <div class="container">
-    <h2>REACH OUT</h2>
-    <p style="max-width:500px; margin:0.5rem auto;">Have a question about sizing, custom orders, or our collection? We’d love to hear from you.</p>
-    <a href="#" class="btn-primary" style="margin-top:0.5rem;">MESSAGE US</a>
-  </div>
-</section>
+  <!-- MESSAGE US / CONTACT snippet -->
+  <section style="padding: 2rem 0; text-align:center; background:var(--cream);">
+    <div class="container">
+      <h2>REACH OUT</h2>
+      <p style="max-width:500px; margin:0.5rem auto;">Have a question about sizing, custom orders, or our collection? We’d love to hear from you.</p>
+      <a href="#" class="btn-primary" style="margin-top:0.5rem;">MESSAGE US</a>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: SHOP -->
+<div id="page-shop" class="page">
+  <section class="container section-title">
+    <h2>SHOP</h2>
+    <p style="font-family:var(--font-accent);">Handcrafted crochet pieces, made slowly.</p>
+  </section>
+  <section class="container" style="padding-bottom: 2rem;">
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Tropical Midi Skirt</h3>
+        <p class="price">$130.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Sequin Coord</h3>
+        <p class="price">$160.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Crochet Asymmetrical Skirt</h3>
+        <p class="price">$100.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Ombre Cowl Neck Coord</h3>
+        <p class="price">$160.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Heritage Crochet Vest</h3>
+        <p class="price">$140.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+      <div class="product-card">
+        <div class="img-placeholder"></div>
+        <h3>Lace Midi Dress</h3>
+        <p class="price">$190.00</p>
+        <a href="#" class="btn-outline">Quick View</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Detail (Tropical Midi Skirt) -->
+  <section class="product-detail">
+    <div class="container">
+      <div class="detail-grid">
+        <div class="detail-image">
+          <span style="background:rgba(255,255,255,0.6); padding:0.5rem 1rem; border-radius:40px;">Tropical Midi Skirt</span>
+        </div>
+        <div class="detail-meta">
+          <h2>TROPICAL MIDI SKIRT</h2>
+          <div class="price-lg">$130.00</div>
+          <p style="font-family:var(--font-accent); letter-spacing:1px;">TAX INCLUDED</p>
+          <div style="margin:0.8rem 0;">
+            <span style="font-weight:500;">SIZE</span> 
+            <a href="#" style="margin-left:1rem; font-size:0.9rem; color:var(--warm-gold);" onclick="showPage('sizeguide')">SIZE GUIDE</a>
+          </div>
+          <div class="size-selector">
+            <button class="active">XS</button>
+            <button>S</button>
+            <button>M</button>
+            <button>L</button>
+            <button>XL</button>
+          </div>
+          <div style="margin:0.8rem 0;">
+            <span class="color-indicator"></span> COLOR — MULTICOLOR
+          </div>
+          <div class="qty-row">
+            <label>QUANTITY</label>
+            <input type="number" value="1" min="1" />
+          </div>
+          <button class="btn-primary" style="margin-top:0.2rem;">ADD TO CART</button>
+          <p style="font-size:0.8rem; margin-top:0.8rem; opacity:0.7;">Shipping is calculated from your delivery country at checkout.</p>
+          <a href="#" style="display:inline-block; margin-top:0.5rem; font-family:var(--font-accent); color:var(--deep-plum);">MESSAGE US</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: CUSTOM -->
+<div id="page-custom" class="page">
+  <section class="custom-section" style="padding: 4rem 0;">
+    <div class="container highlight">
+      <h2>CROCHELLA CUSTOMS</h2>
+      <p>Each piece is lovingly handcrafted to your unique vision. Work with our artisan crocheters to create one-of-a-kind garments tailored to your measurements, color preferences, and style. From weddings to special celebrations, we bring your dream crochet look to life, stitch by stitch.</p>
+      <a href="#" class="btn-primary">START YOUR CUSTOM ORDER</a>
+    </div>
+  </section>
+  <section style="padding: 2rem 0; background:var(--cream); text-align:center;">
+    <div class="container">
+      <h3 style="font-family:var(--font-heading);">How it works</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-top:1.5rem;">
+        <div style="max-width:200px;"><strong>1. Consult</strong><br>Share your vision, colors, and measurements.</div>
+        <div style="max-width:200px;"><strong>2. Create</strong><br>Our artisans handcraft your piece with care.</div>
+        <div style="max-width:200px;"><strong>3. Deliver</strong><br>Your one-of-a-kind garment arrives, made just for you.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: SIZE GUIDE -->
+<div id="page-sizeguide" class="page">
+  <section class="size-guide">
+    <div class="container">
+      <h2 style="text-align:center;">SIZE GUIDE</h2>
+      <p style="text-align:center; margin-bottom:1rem;">Find your perfect fit</p>
+
+      <table>
+        <thead><tr><th>Size</th><th>Bust (in)</th><th>Waist (in)</th><th>Hip (in)</th></tr></thead>
+        <tbody>
+          <tr><td>XXS</td><td>29.9-31.1</td><td>22.0-24.0</td><td>31.9-33.9</td></tr>
+          <tr><td>XS</td><td>31.9-33.1</td><td>24.0-26.0</td><td>33.9-35.8</td></tr>
+          <tr><td>S</td><td>33.9-35.0</td><td>26.0-28.0</td><td>35.8-38.2</td></tr>
+          <tr><td>M</td><td>35.8-37.0</td><td>28.0-29.9</td><td>38.2-40.2</td></tr>
+          <tr><td>L</td><td>38.2-39.0</td><td>29.9-31.9</td><td>40.2-42.1</td></tr>
+          <tr><td>XL</td><td>40.2-40.9</td><td>31.9-33.9</td><td>42.1-44.1</td></tr>
+          <tr><td>XXL</td><td>42.1-42.9</td><td>33.9-35.8</td><td>44.1-46.1</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.9rem; text-align:center; margin-top: -0.5rem;">These are recommended body measurements. For a relaxed fit, size up.</p>
+
+      <div class="fit-info">
+        <span>FIT TYPE: Skinny ——— Oversized</span>
+        <span>STRETCH: None ——— High (Slight Stretch)</span>
+      </div>
+
+      <div class="measure-tips">
+        <h4 style="font-family:var(--font-heading); margin-bottom:0.5rem;">HOW TO MEASURE</h4>
+        <ul>
+          <li>Measure around fullest part of bust, tape parallel to floor.</li>
+          <li>Measure waist at thinnest place.</li>
+          <li>Measure fullest part of hips.</li>
+          <li>For tops: measure from highest point of shoulder to desired length.</li>
+          <li>Measure from shoulder seam to wrist bone with arm slightly bent.</li>
+        </ul>
+        <h4 style="font-family:var(--font-heading); margin: 0.8rem 0 0.3rem;">SIZE TIPS</h4>
+        <ul>
+          <li>If between sizes, size up for comfort.</li>
+          <li>Crochet has slight natural stretch, molds to body.</li>
+          <li>Handmade items may vary 1–2 cm from listed measurements.</li>
+          <li>For questions, contact us before ordering.</li>
+          <li>If you have a bigger/smaller bust or hips, add in order note (e.g. size S bust, M hips).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: ABOUT -->
+<div id="page-about" class="page">
+  <section class="about-page">
+    <div class="container">
+      <div class="story-text">
+        <h2>Some things begin quietly.</h2>
+        <p>Filara was not born in a design studio or a fashion school. It was born in a moment of stillness — a young woman, a hook, and a thread, teaching herself something beautiful from scratch.</p>
+        <p>Today, Filara is a small atelier dedicated to handcrafted crochet that honors slowness, craftsmanship, and the beauty of imperfection. Each piece is made with intention, meant to be worn and cherished for years.</p>
+        <p>We believe luxury is not defined by price, but by the hands behind every stitch.</p>
+        <a href="#" class="btn-secondary" onclick="showPage('shop')">Explore the collection →</a>
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-content">
       <div class="footer-brand">
-        <h3>Crochella</h3>
+        <h3>Filara</h3>
         <p>Handcrafted crochet, made slowly.</p>
       </div>
       <div class="footer-links">
-        <a href="#newcollection">New</a>
-        <a href="#shop">Shop</a>
-        <a href="#custom">Custom</a>
-        <a href="#sizeguide">Size Guide</a>
-        <a href="#contact">Contact</a>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('shop')">Shop</a>
+        <a onclick="showPage('custom')">Custom</a>
+        <a onclick="showPage('sizeguide')">Size Guide</a>
+        <a onclick="showPage('about')">About</a>
       </div>
       <div class="footer-social">
         <a href="#">Instagram</a> 
@@ -689,18 +815,74 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Crochella. All rights reserved.</p>
+      <p>© 2026 Filara. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
-<!-- simple interactivity for size buttons -->
+<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-  document.querySelectorAll('.size-selector button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.size-selector button').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
+  // ----- PAGE NAVIGATION -----
+  function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Show target page
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+
+    // Update nav links active state
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.classList.remove('active');
+      if (link.dataset.page === pageId) {
+        link.classList.add('active');
+      }
     });
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ----- SIZE SELECTOR (shop page) -----
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.size-selector')) {
+      const container = e.target.closest('.size-selector');
+      container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+    }
+  });
+
+  // ----- make all nav links with data-page work -----
+  document.querySelectorAll('[data-page]').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      const page = this.dataset.page;
+      if (page) showPage(page);
+    });
+  });
+
+  // ----- footer links -----
+  document.querySelectorAll('.footer-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const text = this.textContent.trim().toLowerCase();
+      const map = { home: 'home', shop: 'shop', custom: 'custom', 'size guide': 'sizeguide', about: 'about' };
+      const page = map[text] || text;
+      if (page) showPage(page);
+    });
+  });
+
+  // ----- any "VIEW ALL" or "Explore" buttons that point to shop -----
+  document.querySelectorAll('[onclick*="showPage"]').forEach(el => {
+    // already handled inline
+  });
+
+  // ensure home is active on load
+  document.addEventListener('DOMContentLoaded', function() {
+    // if no page is active, show home
+    const active = document.querySelector('.page.active');
+    if (!active) {
+      document.getElementById('page-home').classList.add('active');
+    }
   });
 </script>
 
